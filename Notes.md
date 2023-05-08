@@ -13,3 +13,6 @@ https://docs.strapi.io/dev-docs/deployment/nginx-proxy
 # Update Strapi server.js
 
 url: env('', 'https://localhost/cms'),
+
+# Auth Callback Example
+https://www.manuelkruisz.com/blog/posts/strapi-react-google-authentication-provider
