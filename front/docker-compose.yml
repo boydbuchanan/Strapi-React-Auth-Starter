@@ -12,5 +12,4 @@ services:
       - '3000:3000'
     volumes:
       - ./src:/app/src
-      # - ./ssl:/etc/ssl
     command: npm run start

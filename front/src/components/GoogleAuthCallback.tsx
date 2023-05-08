@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
+import SideBySide from 'layout/SideBySide';
 
 export interface IAuthCallback {
   jwt: string;
@@ -35,6 +36,7 @@ function GoogleAuthCallback() {
 
   return (
     <div>
+      <SideBySide>
       {auth && (
         <>
           <div>Jwt: {auth.jwt}</div>
@@ -42,6 +44,7 @@ function GoogleAuthCallback() {
           <div>Provider: {auth.user.provider}</div>
         </>
       )}
+      </SideBySide>
     </div>
   )
 }

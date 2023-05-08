@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import SignInSide from './SignInSide';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AuthProvider from "components/AuthProvider/AuthProvider";
@@ -12,22 +13,17 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-  <AuthProvider>
-    <BrowserRouter>
-      <Routes>
-        
-        <Route path="/" element={<App />} />
-          
-        <Route path="/auth/callback/google" element={<GoogleAuthCallback />} />
-      </Routes>
-    </BrowserRouter>
-  </AuthProvider>
-</React.StrictMode>
-  // <React.StrictMode>
-  //   <BrowserRouter>
-  //     <App />
-  //   </BrowserRouter>,
-  // </React.StrictMode>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SignInSide />} />
+          <Route path="/auth/callback/google" element={<GoogleAuthCallback />} />
+          <Route path="cms/" element={<App />} />
+          <Route path="cms/:path" element={<App />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

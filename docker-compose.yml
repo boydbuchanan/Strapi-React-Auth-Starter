@@ -1,16 +1,16 @@
 version: '3'
 
 volumes:
-  back-data:
+  cms-data:
 
 networks:
-  back:
-    name: back
+  cms:
+    name: Cms
     driver: bridge
 
 services:
   proxy:
-    container_name: proxy.cms.kaizen.com
+    container_name: proxy.cms.localhost.com
     image: nginx:stable
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
@@ -19,7 +19,7 @@ services:
       - '80:80'
       - '443:443'
     networks:
-      - back
+      - cms
 
   frontend:
     environment:
@@ -36,20 +36,19 @@ services:
       # - ./ssl:/etc/ssl
     command: npm run start
     networks:
-      - back
+      - cms
 
-
-  back:
-    container_name: back
+  cms:
+    container_name: cms
     build:
       context: ./cms
       dockerfile: Dockerfile
-    image: back:latest
+    image: cms:latest
     restart: unless-stopped
     env_file: .env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
-      DATABASE_HOST: backDB
+      DATABASE_HOST: cmsDB
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
       DATABASE_PORT: ${DATABASE_PORT}
@@ -62,44 +61,46 @@ services:
       - ./cms/src:/opt/app/src
       - ./cms/package.json:/opt/package.json
       - ./cms/package-lock.json:/opt/package-lock.json
+
       - ./cms/.env:/opt/app/.env
       - ./cms/public/uploads:/opt/app/public/uploads
     ports:
-      - '9337:9337'
+      - '1337:1337'
     networks:
-      - back
+      - cms
     depends_on:
-      - backDB
+      - cmsDB
       
-  backDB:
-    container_name: backDB
+  cmsDB:
+    container_name: cmsDB
     platform: linux/amd64 #for platform error on Apple M1 chips
     restart: unless-stopped
     env_file: .env
-    image: mariadb:latest
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_USER: ${DATABASE_USERNAME}
       MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
       MYSQL_DATABASE: ${DATABASE_NAME}
     volumes:
-      - back-data:/var/lib/mysql
+      - cms-data:/var/lib/mysql
       #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
     ports:
       - '3306:3306'
     networks:
-      - back
+      - cms
       
-  # backAdminer:
-  #   container_name: backAdminer
-  #   image: adminer
-  #   restart: unless-stopped
-  #   ports:
-  #     - '9090:8080'
-  #   environment:
-  #     - ADMINER_DEFAULT_SERVER=backDB
-  #   networks:
-  #     - back
-  #   depends_on:
-  #     - backDB
+  cmsAdminer:
+    container_name: cmsAdminer
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - '9090:8080'
+    environment:
+      - ADMINER_DEFAULT_SERVER=cmsDB
+    networks:
+      - cms
+    depends_on:
+      - cmsDB
 

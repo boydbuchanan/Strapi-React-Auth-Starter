@@ -1,12 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import SignInSide from 'SignInSide'
+import { useParams } from 'react-router-dom';
+import { SideBySide } from 'layout/SideBySide/SideBySide';
 
 function App() {
   return (
-    <SignInSide></SignInSide>
+    <AppInfo></AppInfo>
   );
 }
 
 export default App;
+
+export function AppInfo() {
+  const { path } = useParams()
+  return (
+    <SideBySide style={{
+      backgroundColor: '#677c92',
+    }}>
+      <h1>CMS</h1>
+      <h2>/{path}</h2>
+    </SideBySide>
+  );
+}
