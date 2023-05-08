@@ -1,3 +1,4 @@
+//https://www.manuelkruisz.com/blog/posts/strapi-react-google-authentication-provider
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
