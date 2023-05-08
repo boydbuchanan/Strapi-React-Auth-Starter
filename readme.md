@@ -4,12 +4,20 @@
 2. Install Node.js
 3. Install Docker Desktop
 
+For development, run npm install in /front
+
 # Setup Localhost
 Edit hosts with Admin Privileges
 
 `C:\Windows\System32\drivers\etc\hosts`
 
-Run npm install on Front/CMS to develop locally
+You should see a mapping for host.docker.internal, use this ip address or verify with a ping command.
+
+`ping host.docker.internal`
+
+Use the ip address of host.docker.internal to redirect localhost with
+
+`127.###.###.### localhost`
 
 # Generate Keys
 
