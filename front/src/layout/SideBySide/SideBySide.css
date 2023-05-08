@@ -1,14 +1,14 @@
 
 
 .side-by-side {
-  display: grid;
+  display: flex;
   height: 100vh;
 }
 .side-by-side .left {
-  grid-column: 1;
+  flex: 1;
   padding: 1rem;
 }
 .side-by-side .right {
-  grid-column: 2;
+  flex: 1;
   padding: 1rem;
 }
