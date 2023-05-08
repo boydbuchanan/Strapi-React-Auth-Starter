@@ -1,0 +1,16 @@
+
+version: '3.2'
+services:
+  frontend:
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+    build:
+      context: .
+      dockerfile: 'Dockerfile'
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./src:/app/src
+      # - ./ssl:/etc/ssl
+    command: npm run start

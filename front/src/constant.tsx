@@ -1,0 +1,3 @@
+export const API = "https://localhost/cms";
+export const AUTH_TOKEN = "20d35bf71b4fd9fb64872ae0c545d55d84ccde62ce4dfa7a12d5f2286efebd3262712428b0241d3b4885e4c383f0c03a898c7f39e6b4ff5ddc98f1896583cee444ea5aad93acf733f8f5103ef35d793d63f429598ccb4417d777a73aa42e9804145cfbab016f3e526369c00fe701c31522626fcb385d6ca70a2d77d3737d5dc8";
+export const BEARER = "Bearer";
