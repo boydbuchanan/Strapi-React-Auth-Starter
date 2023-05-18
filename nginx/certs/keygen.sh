@@ -1,0 +1,2 @@
+openssl req -x509 -out /work/ui.localdev.com.crt -new -newkey rsa:2048 -nodes -keyout /work/ui.localdev.com.key -subj '/CN=ui.localdev.com'
+openssl req -x509 -out /work/cms.localdev.com.crt -new -newkey rsa:2048 -nodes -keyout /work/cms.localdev.com.key -subj '/CN=cms.localdev.com'

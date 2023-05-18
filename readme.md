@@ -1,33 +1,9 @@
 # Install Dependencies
 
 1. Clone the repository
-2. Install Node.js
-3. Install Docker Desktop
-
-For development, run npm install in /front
-
-# Setup Localhost
-Edit hosts with Admin Privileges
-
-`C:\Windows\System32\drivers\etc\hosts`
-
-You should see a mapping for host.docker.internal, use this ip address or verify with a ping command.
-
-`ping host.docker.internal`
-
-Use the ip address of host.docker.internal to redirect localhost with
-
-`127.###.###.### localhost`
-
-# Generate Keys
-
-Run Keys Powershell script in nginx/ssl folder
-
-```azurepowershell
-cd .\nginx\ssl\
- .\keys.ps1
-```
-This generates a CSR.csr and privateKey.key in the appropriate directory. Running this script from root directory will not place them in the correct directory according to the docker compose file.
+1. Install Node.js
+1. Install Docker Desktop
+1. [Install Strapi and Setup Local Steps](steps.md)
 
 # Run Docker Compose
 
